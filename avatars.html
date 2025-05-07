@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Choose Your Avatar</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ff0077, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .avatars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .avatar {
+      border: 3px solid transparent;
+      border-radius: 50%;
+      overflow: hidden;
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .avatar:hover {
+      transform: scale(1.1);
+      border-color: #ff0077;
+    }
+    input {
+      margin-top: 2rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      width: 250px;
+    }
+    button {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #ff0077;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff3399;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Select Your Avatar</h1>
+  <input type="text" id="username" placeholder="Enter your name" />
+
+  <div class="avatars">
+    <img class="avatar" src="https://i.pravatar.cc/100?img=3" onclick="selectAvatar(this.src)">
+    <img class="avatar" src="https://i.pravatar.cc/100?img=5" onclick="selectAvatar(this.src)">
+    <img class="avatar" src="https://i.pravatar.cc/100?img=7" onclick="selectAvatar(this.src)">
+    <img class="avatar" src="https://i.pravatar.cc/100?img=9" onclick="selectAvatar(this.src)">
+    <img class="avatar" src="https://i.pravatar.cc/100?img=11" onclick="selectAvatar(this.src)">
+  </div>
+
+  <button onclick="saveProfile()">Save & Go Back</button>
+
+  <script>
+    let selectedAvatar = null;
+
+    function selectAvatar(src) {
+      selectedAvatar = src;
+      document.querySelectorAll('.avatar').forEach(img => img.style.borderColor = 'transparent');
+      event.target.style.borderColor = '#ff0077';
+    }
+
+    function saveProfile() {
+      const name = document.getElementById('username').value.trim();
+      if (!name || !selectedAvatar) {
+        alert('Enter a name and pick an avatar!');
+        return;
+      }
+      localStorage.setItem('cherry_username', name);
+      localStorage.setItem('cherry_avatar', selectedAvatar);
+      window.location.href = 'CherryMeta.html';
+    }
+  </script>
+
+</body>
+</html>
+

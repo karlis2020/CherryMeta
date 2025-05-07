@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MetaCherry</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 60px;
+      text-align: center;
+    }
+
+    /* === Top Nav Bar === */
+    .topnav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      box-shadow: 0 0 10px #ff007777;
+      z-index: 999;
+    }
+
+    .topnav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .topnav a:hover {
+      background: #ff007733;
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #ff0077, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .roadmap, .join-section, .profile {
+      background: #111;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #333;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+
+    .roadmap h2 {
+      color: #00ffff;
+    }
+
+    .avatar-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #ff0077;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #ff0077;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff3399;
+    }
+
+    .join-section input {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topnav">
+    <a href="CherryMeta.html">🏠 Home</a>
+    <a href="avatars.html">🧑‍🎨 Avatars</a>
+    <a href="marketplace.html">🛒 Marketplace</a>
+  </div>
+
+  <h1>🌐 Welcome to MetaCherry</h1>
+
+  <div class="profile">
+    <img id="avatar" class="avatar-img" src="" alt="Your Avatar" />
+    <h2 id="username">Loading...</h2>
+    <button onclick="location.href='avatars.html'">Customize Avatar</button>
+  </div>
+
+  <div class="roadmap">
+    <h2>🚀 Roadmap</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li>✅ Launch Profile System</li>
+      <li>🔧 3D Avatar World</li>
+      <li>🌐 Real-Time Rooms</li>
+      <li>🛍️ MetaCherry Marketplace</li>
+      <li>🎮 Mini-Games & Events</li>
+    </ul>
+  </div>
+
+  <div class="join-section">
+    <h2>Join the CherryVerse 🌟</h2>
+    <input type="email" placeholder="Enter your email to join" />
+    <br>
+    <button onclick="alert('You’re in. Welcome to the future 🌐🍒')">Join Now</button>
+  </div>
+
+  <script>
+    const avatar = localStorage.getItem('cherry_avatar');
+    const username = localStorage.getItem('cherry_username');
+
+    if (avatar && username) {
+      document.getElementById('avatar').src = avatar;
+      document.getElementById('username').textContent = username;
+    } else {
+      document.getElementById('avatar').src = 'https://placehold.co/100x100?text=?';
+      document.getElementById('username').textContent = 'No profile yet';
+    }
+  </script>
+
+</body>
+</html>
+
