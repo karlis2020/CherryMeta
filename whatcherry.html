@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WhatsApp Clone - No JS</title>
+  <title>WhatsApp Clone - JS Enabled</title>
   <style>
     * {
       margin: 0;
@@ -93,13 +93,174 @@
   </div>
 
   <div class="chat">
-    <div class="messages">
-      
-    </div>
+    <div class="messages" id="messages"></div>
     <div class="input-area">
-      <input type="text" placeholder="Type a message... (not functional)">
+      <input type="text" placeholder="Type a message...">
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const input = document.querySelector(".input-area input");
+      const messagesContainer = document.querySelector(".messages");
+
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && input.value.trim() !== "") {
+          const messageText = input.value.trim();
+
+          const messageDiv = document.createElement("div");
+          messageDiv.classList.add("message", "sent");
+          messageDiv.textContent = messageText;
+
+          messagesContainer.appendChild(messageDiv);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+          input.value = "";
+
+          // Optional: Simulate a reply
+          setTimeout(() => {
+            const replyDiv = document.createElement("div");
+            replyDiv.classList.add("message", "received");
+            replyDiv.textContent = "Auto-reply: Got your message!";
+            messagesContainer.appendChild(replyDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }, 1000);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp Clone - JS Enabled</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
 
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #e5ddd5;
+    }
+
+    .sidebar {
+      width: 25%;
+      background-color: #075e54;
+      color: white;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 1rem;
+    }
+
+    .contact {
+      padding: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      cursor: default;
+    }
+
+    .chat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #ece5dd;
+    }
+
+    .messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .message {
+      max-width: 60%;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      word-wrap: break-word;
+    }
+
+    .sent {
+      align-self: flex-end;
+      background-color: #dcf8c6;
+    }
+
+    .received {
+      align-self: flex-start;
+      background-color: white;
+    }
+
+    .input-area {
+      padding: 1rem;
+      background-color: #f0f0f0;
+      display: flex;
+    }
+
+    .input-area input {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Chats</h2>
+    <div class="contact">Mom</div>
+    <div class="contact">Bestie 💅</div>
+    <div class="contact">Crush 😳</div>
+    <div class="contact">Cherry Dev 🧠</div>
+  </div>
+
+  <div class="chat">
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <input type="text" placeholder="Type a message...">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const input = document.querySelector(".input-area input");
+      const messagesContainer = document.querySelector(".messages");
+
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && input.value.trim() !== "") {
+          const messageText = input.value.trim();
+
+          const messageDiv = document.createElement("div");
+          messageDiv.classList.add("message", "sent");
+          messageDiv.textContent = messageText;
+
+          messagesContainer.appendChild(messageDiv);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+          input.value = "";
+
+          // Optional: Simulate a reply
+          setTimeout(() => {
+            const replyDiv = document.createElement("div");
+            replyDiv.classList.add("message", "received");
+            replyDiv.textContent = "Auto-reply: Got your message!";
+            messagesContainer.appendChild(replyDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
