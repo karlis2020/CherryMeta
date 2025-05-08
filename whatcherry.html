@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WhatsApp Clone - Sidebar Sections</title>
+  <title>WhatsApp Clone - Side Sidebar</title>
   <style>
     * {
       margin: 0;
@@ -17,7 +17,30 @@
       background-color: #e5ddd5;
     }
 
-    .sidebar {
+    .side-sidebar {
+      width: 60px;
+      background-color: #202c33;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1rem;
+    }
+
+    .side-sidebar .icon {
+      width: 40px;
+      height: 40px;
+      background-color: #2a3942;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .main-sidebar {
       width: 25%;
       background-color: #075e54;
       color: white;
@@ -25,7 +48,7 @@
       overflow-y: auto;
     }
 
-    .sidebar font {
+    .main-sidebar font {
       font-size: 1.2rem;
       display: block;
       margin: 1rem 0 0.5rem;
@@ -39,6 +62,11 @@
 
     .contact.active {
       background-color: #128c7e;
+    }
+
+    .inactive {
+      opacity: 0.5;
+      cursor: default;
     }
 
     .chat {
@@ -87,15 +115,24 @@
       border-radius: 25px;
       outline: none;
     }
-
-    .inactive {
-      opacity: 0.5;
-      cursor: default;
-    }
   </style>
 </head>
 <body>
-  <div class="sidebar">
+
+  <div class="side-sidebar">
+    <div class="icon" title="Status">📱</div>
+    <div class="icon" title="Channels">📢</div>
+    <div class="icon" title="Communities">👥</div>
+    <div class="icon" title="Chats">💬</div>
+  </div>
+
+  <div class="main-sidebar">
+    <font>💬 Correspondences</font>
+    <div class="contact active" data-contact="mom">Mom</div>
+    <div class="contact" data-contact="bestie">Bestie 💅</div>
+    <div class="contact" data-contact="crush">Crush 😳</div>
+    <div class="contact" data-contact="cherry">Cherry Dev 🧠</div>
+
     <font>📱 Status</font>
     <div class="contact inactive">My Status</div>
     <div class="contact inactive">Cherry's Status</div>
@@ -107,12 +144,6 @@
     <font>👥 Communities</font>
     <div class="contact inactive">Useless One</div>
     <div class="contact inactive">Even More Useless</div>
-
-    <font>💬 Correspondences</font>
-    <div class="contact active" data-contact="mom">Mom</div>
-    <div class="contact" data-contact="bestie">Bestie 💅</div>
-    <div class="contact" data-contact="crush">Crush 😳</div>
-    <div class="contact" data-contact="cherry">Cherry Dev 🧠</div>
   </div>
 
   <div class="chat">
@@ -161,6 +192,7 @@
 
     contacts.forEach(contact => {
       contact.addEventListener("click", () => {
+        if (!contact.dataset.contact) return;
         document.querySelector(".contact.active")?.classList.remove("active");
         contact.classList.add("active");
         currentContact = contact.dataset.contact;
@@ -187,5 +219,6 @@
 
     renderMessages();
   </script>
+
 </body>
 </html>
