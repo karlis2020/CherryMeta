@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WhatsApp Clone - Tabs Working</title>
+  <title>WhatsApp Clone - Sidebar Sections</title>
   <style>
     * {
       margin: 0;
@@ -26,9 +26,9 @@
     }
 
     .sidebar font {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       display: block;
-      margin-bottom: 1rem;
+      margin: 1rem 0 0.5rem;
     }
 
     .contact {
@@ -87,11 +87,28 @@
       border-radius: 25px;
       outline: none;
     }
+
+    .inactive {
+      opacity: 0.5;
+      cursor: default;
+    }
   </style>
 </head>
 <body>
   <div class="sidebar">
-    <font>Correspondences</font>
+    <font>📱 Status</font>
+    <div class="contact inactive">My Status</div>
+    <div class="contact inactive">Cherry's Status</div>
+
+    <font>📢 Channels</font>
+    <div class="contact inactive">News Channel</div>
+    <div class="contact inactive">Cherry Broadcast</div>
+
+    <font>👥 Communities</font>
+    <div class="contact inactive">Useless One</div>
+    <div class="contact inactive">Even More Useless</div>
+
+    <font>💬 Correspondences</font>
     <div class="contact active" data-contact="mom">Mom</div>
     <div class="contact" data-contact="bestie">Bestie 💅</div>
     <div class="contact" data-contact="crush">Crush 😳</div>
@@ -108,9 +125,8 @@
   <script>
     const messagesEl = document.getElementById("messages");
     const inputEl = document.getElementById("inputBox");
-    const contacts = document.querySelectorAll(".contact");
+    const contacts = document.querySelectorAll(".contact[data-contact]");
 
-    // Each tab gets its own array of messages
     const chats = {
       mom: [
         { type: "received", text: "Did you eat?" },
@@ -159,7 +175,6 @@
         inputEl.value = "";
         renderMessages();
 
-        // Auto-reply simulation
         setTimeout(() => {
           chats[currentContact].push({
             type: "received",
@@ -170,7 +185,6 @@
       }
     });
 
-    // Initial render
     renderMessages();
   </script>
 </body>
